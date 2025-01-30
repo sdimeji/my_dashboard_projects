@@ -193,6 +193,20 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
         t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(t)
+        
+        Predict_clf = clf.predict(x_test_trany, check_input=True)
+        #Predict_clf
+
+        # decision tree confusion matrix
+        st.title("Confusion matrix DT :")
+        confusion_matrix(y_test, Predict_clf)
+        cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                                      display_labels=reg.classes_)
+        disp.plot()
+        plt.show()
+        st.pyplot()
+
 
 
 
