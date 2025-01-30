@@ -191,7 +191,7 @@ with tab2:
         st.title("feature importance DT :")
         #clf.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
-        t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=1000))
+        t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(t)
 
 
