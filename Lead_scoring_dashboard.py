@@ -108,7 +108,7 @@ with tab2:
                                                   'Country', 'Specialization'])
 
     # Checking if the data is imbalanced or not
-    sum(y) / len(y)
+    #sum(y) / len(y)
     tr = y.value_counts(normalize=True)
     tr
     # 54% of the leads were converted. We need to make sure that we maintain the same % across both training and testing datasets
