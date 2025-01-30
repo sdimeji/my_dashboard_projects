@@ -224,6 +224,66 @@ with tab2:
         col4.metric("F1 test", np.round(f1_test, 2))
         st.pyplot()
 
+    if selected_ML == "Random forest":
+        # plot random forest
+        st.title("Plot Random forest :")
+        clf1 = RandomForestClassifier(n_estimators=50, max_depth=5)
+        clf1 = clf1.fit(X_transform, y_train)
+        fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
+        tree.plot_tree(clf1.estimators_[5],
+                       feature_names=None,
+                       class_names=None,
+                       filled=True);
+        fig.savefig('clf1_individualtree.png')
+        st.pyplot(fig)
+
+        # feature importance
+        st.title("Feature importance RF :")
+        #clf1.feature_importances_
+        df_plot = pd.DataFrame({'coef': list(clf1.feature_importances_), 'name': x_train.columns})
+        r = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
+        st.plotly_chart(r)
+
+        Predict_clf1 = clf1.predict(x_test_trany)
+
+        # plot confusion matrix
+        st.title("Confusion matrix RF :")
+        confusion_matrix(y_test, Predict_clf1)
+        cm = confusion_matrix(y_test, Predict_clf1, labels=reg.classes_)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                                      display_labels=reg.classes_)
+        disp.plot()
+        plt.show()
+        st.pyplot()
+
+
+        st.title("Accuracy Metrics RF :")
+        col1, col2, col3, col4 = st.columns(4)
+        accuracy_test = accuracy_score(y_test, clf1.predict(x_test_trany))
+        recall_test = recall_score(y_test, clf1.predict(x_test_trany), average='weighted')
+        precision_test = precision_score(y_test, clf1.predict(x_test_trany), average='weighted')
+        f1_test = f1_score(y_test, clf1.predict(x_test_trany), average='weighted')
+
+        col1.metric("accuracy test", np.round(accuracy_test, 2))
+        col2.metric("recall test", np.round(recall_test, 2))
+        col3.metric("precision test", np.round(precision_test, 2))
+        col4.metric("F1 test", np.round(f1_test, 2))
+        st.pyplot()
+
+        # train
+        accuracy_train = accuracy_score(y_train, clf1.predict(X_transform))
+        recall_train = recall_score(y_train, clf1.predict(X_transform), average='weighted')
+
+        precision_train = precision_score(y_train, clf1.predict(X_transform), average='weighted')
+
+        f1_train = f1_score(y_train, clf1.predict(X_transform), average='weighted')
+
+        col1.metric("accuracy train", np.round(accuracy_train, 2))
+        col2.metric("recall train", np.round(recall_train, 2))
+        col3.metric("precision train", np.round(precision_train, 2))
+        col4.metric("F1 train", np.round(f1_train, 2))
+        st.pyplot()
+
 
         # train
         accuracy_train = accuracy_score(y_train, clf.predict(X_transform))
