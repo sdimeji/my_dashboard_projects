@@ -173,6 +173,15 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
         st.plotly_chart(y)
+        
+    if selected_ML == "Decision tree":
+        # Plot decision tree
+        clf = tree.DecisionTreeClassifier(max_depth=5)
+        clf = clf.fit(X_transform, y_train)
+        fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
+        fig.savefig('clf_individualtree.png')
+        tree.plot_tree(clf)
+        st.pyplot(fig)
 
 
 
