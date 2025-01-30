@@ -206,6 +206,38 @@ with tab2:
         disp.plot()
         plt.show()
         st.pyplot()
+        
+        # Metrics
+        st.title("Accuracy Metrics DT :")
+        col1, col2, col3, col4 = st.columns(4)
+        accuracy_test = accuracy_score(y_test, clf.predict(x_test_trany))
+        recall_test = recall_score(y_test, clf.predict(x_test_trany), average='weighted')
+
+        precision_test = precision_score(y_test, clf.predict(x_test_trany), average='weighted')
+
+        f1_test = f1_score(y_test, clf.predict(x_test_trany), average='weighted')
+
+
+        col1.metric("accuracy test", np.round(accuracy_test, 2))
+        col2.metric("recall test", np.round(recall_test, 2))
+        col3.metric("precision test", np.round(precision_test, 2))
+        col4.metric("F1 test", np.round(f1_test, 2))
+        st.pyplot()
+
+
+        # train
+        accuracy_train = accuracy_score(y_train, clf.predict(X_transform))
+        recall_train = recall_score(y_train, clf.predict(X_transform), average='weighted')
+
+        precision_train = precision_score(y_train, clf.predict(X_transform), average='weighted')
+
+        f1_train = f1_score(y_train, clf.predict(X_transform), average='weighted')
+
+        col1.metric("accuracy train", np.round(accuracy_train, 2))
+        col2.metric("recall train", np.round(recall_train, 2))
+        col3.metric("precision train", np.round(precision_train, 2))
+        col4.metric("F1 train", np.round(f1_train, 2))
+        st.pyplot()
 
 
 
