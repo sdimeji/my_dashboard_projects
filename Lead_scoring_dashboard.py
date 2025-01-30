@@ -81,6 +81,7 @@ with tab1:
     # plot correlation matrix of variables
     corr = df_plot.corr(min_periods=5, numeric_only=True)
     # st.write(corr)
+    fig,ax = plt.subplots(figsize=(6,6))
     ax = sns.heatmap(
         corr,
         vmin=-1, vmax=1, center=0,
@@ -91,7 +92,7 @@ with tab1:
         ax.get_xticklabels(),
         rotation=45,
         horizontalalignment='right')
-    st.pyplot()
+    st.pyplot(fig)
 
 with tab2:
     # add dropdown widgets
