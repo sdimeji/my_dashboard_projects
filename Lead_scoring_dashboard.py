@@ -79,6 +79,7 @@ with tab1:
     col1.plotly_chart(plot)
 
     # plot correlation matrix of variables
+    st.title("Correlation matrix of variables :")
     corr = df_plot.corr(min_periods=5, numeric_only=True)
     # st.write(corr)
     fig,ax = plt.subplots(figsize=(6,6))
@@ -128,6 +129,7 @@ with tab2:
 
     if selected_ML == 'Logistic':
         # plot confussion matrix
+        st.title("Plot confussion matrix :")
         confusion_matrix(y_test, predict_test)
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
 
@@ -169,6 +171,7 @@ with tab2:
         st.pyplot()
         
         # Feature importance
+        st.title("Feature importance :")
         #reg.coef_
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
@@ -176,6 +179,7 @@ with tab2:
         
     if selected_ML == "Decision tree":
         # Plot decision tree
+        st.title("Plot decision tree :")
         clf = tree.DecisionTreeClassifier(max_depth=5)
         clf = clf.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
