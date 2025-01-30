@@ -167,6 +167,14 @@ with tab2:
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
         st.pyplot()
+        
+        # Feature importance
+        #reg.coef_
+        df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
+        y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
+        st.plotly_chart(y)
+
+
 
 
 
