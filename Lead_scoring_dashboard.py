@@ -283,6 +283,59 @@ with tab2:
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
         st.pyplot()
+        
+    if selected_ML == "XGBoost":
+        # Plot XGBoost model
+        st.title("Plot XGBoost model :")
+        GBx = xgb.XGBClassifier(n_estimators=5, max_depth=5)
+        GBx.fit(X_transform, y_train)
+        xgb.plot_tree(GBx, num_trees=2)
+        plt.rcParams['figure.figsize'] = [5, 5]
+        st.pyplot()
+
+        # feature importance
+        st.title("feature importance :")
+        #GBx.feature_importances_
+        df_plot = pd.DataFrame({'coef': list(GBx.feature_importances_), 'name': x_train.columns})
+        x = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=2000))
+        st.plotly_chart(x)
+
+        # plot confusion matrix
+        st.title("confusion matrix :")
+        Predict_GBx = GBx.predict(x_test_trany)
+
+        confusion_matrix(y_test, Predict_GBx)
+        cm = confusion_matrix(y_test, Predict_GBx, labels=reg.classes_)
+        disp = ConfusionMatrixDisplay(confusion_matrix=cm,
+                                      display_labels=reg.classes_)
+        disp.plot()
+        plt.show()
+        st.pyplot()
+
+        st.title("Accuracy Metrics :")
+        col1, col2, col3, col4 = st.columns(4)
+        accuracy_test = accuracy_score(y_test, GBx.predict(x_test_trany))
+        recall_test = recall_score(y_test, GBx.predict(x_test_trany), average='weighted')
+        precision_test = precision_score(y_test, GBx.predict(x_test_trany), average='weighted')
+        f1_test = f1_score(y_test, GBx.predict(x_test_trany), average='weighted')
+
+        col1.metric("accuracy test", np.round(accuracy_test, 2))
+        col2.metric("recall test", np.round(recall_test, 2))
+        col3.metric("precision test", np.round(precision_test, 2))
+        col4.metric("F1 test", np.round(f1_test, 2))
+        st.pyplot()
+
+        # Train
+        accuracy_train = accuracy_score(y_train, GBx.predict(X_transform))
+        recall_train = recall_score(y_train, GBx.predict(X_transform), average='weighted')
+        precision_train = precision_score(y_train, GBx.predict(X_transform), average='weighted')
+        f1_train = f1_score(y_train, GBx.predict(X_transform), average='weighted')
+
+        col1.metric("accuracy train", np.round(accuracy_train, 2))
+        col2.metric("recall train", np.round(recall_train, 2))
+        col3.metric("precision train", np.round(precision_train, 2))
+        col4.metric("F1 train", np.round(f1_train, 2))
+        st.pyplot()
 
 
 
