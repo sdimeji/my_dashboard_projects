@@ -338,6 +338,9 @@ with tab2:
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
         st.pyplot()
+    
+
+       
 
 
 
