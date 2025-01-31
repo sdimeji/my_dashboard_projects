@@ -30,7 +30,7 @@ df.dropna(inplace=True)
 
 # add title to your dashboard
 st.title('Lead scoring dashboard')
-st.title('OBJECTIVE: blue[ This project is trying to implement a model that can determine if a lead will be converted or not, using key variables, this model will save resources and time of our sales team, using least time to achieve higher revenue]')
+st.title('OBJECTIVE:blue[This project is trying to implement a model that can determine if a lead will be converted or not, using key variables, this model will save resources and time of our sales team, using least time to achieve higher revenue]')
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
