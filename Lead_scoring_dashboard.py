@@ -229,6 +229,19 @@ with tab2:
         col3.metric("precision test", np.round(precision_test, 2))
         col4.metric("F1 test", np.round(f1_test, 2))
         
+        # train
+        accuracy_train = accuracy_score(y_train, clf.predict(X_transform))
+        recall_train = recall_score(y_train, clf.predict(X_transform), average='weighted')
+
+        precision_train = precision_score(y_train, clf.predict(X_transform), average='weighted')
+
+        f1_train = f1_score(y_train, clf.predict(X_transform), average='weighted')
+
+        col1.metric("accuracy train", np.round(accuracy_train, 2))
+        col2.metric("recall train", np.round(recall_train, 2))
+        col3.metric("precision train", np.round(precision_train, 2))
+        col4.metric("F1 train", np.round(f1_train, 2))
+       
 
     if selected_ML == "Random forest":
         # plot random forest
