@@ -112,6 +112,7 @@ with tab2:
                                                   'Country', 'Specialization'])
 
     # Checking if the data is imbalanced or not
+    st.title('How balanced is our data')
     #sum(y) / len(y)
     tr = y.value_counts(normalize=True)
     tr
