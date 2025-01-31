@@ -141,6 +141,7 @@ with tab2:
                                   display_labels=reg.classes_)
         disp.plot()
         plt.show()
+        st.pyplot()
 
 
         # Accuracy of logistics model test and train set
@@ -172,7 +173,7 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.pyplot()
+        
         
         # Feature importance
         st.title("Feature importance :")
@@ -226,7 +227,7 @@ with tab2:
         col2.metric("recall test", np.round(recall_test, 2))
         col3.metric("precision test", np.round(precision_test, 2))
         col4.metric("F1 test", np.round(f1_test, 2))
-        st.pyplot()
+        
 
     if selected_ML == "Random forest":
         # plot random forest
@@ -272,7 +273,7 @@ with tab2:
         col2.metric("recall test", np.round(recall_test, 2))
         col3.metric("precision test", np.round(precision_test, 2))
         col4.metric("F1 test", np.round(f1_test, 2))
-        st.pyplot()
+        
 
         # train
         accuracy_train = accuracy_score(y_train, clf1.predict(X_transform))
@@ -286,7 +287,7 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.pyplot()
+        
         
     if selected_ML == "XGBoost":
         # Plot XGBoost model
@@ -327,7 +328,7 @@ with tab2:
         col2.metric("recall test", np.round(recall_test, 2))
         col3.metric("precision test", np.round(precision_test, 2))
         col4.metric("F1 test", np.round(f1_test, 2))
-        st.pyplot()
+        
 
         # Train
         accuracy_train = accuracy_score(y_train, GBx.predict(X_transform))
@@ -339,7 +340,7 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.pyplot()
+        
     
 
        
