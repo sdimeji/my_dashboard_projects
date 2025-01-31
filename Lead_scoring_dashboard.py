@@ -293,7 +293,7 @@ with tab2:
         GBx.fit(X_transform, y_train)
         #xgb.plot_tree(GBx, num_trees=2)
         #plt.rcParams['figure.figsize'] = [5, 5]
-        st.pyplot()
+        #st.pyplot()
 
         # feature importance
         st.title("feature importance :")
