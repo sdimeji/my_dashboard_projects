@@ -145,6 +145,7 @@ with tab2:
 
 
         # Accuracy of logistics model test and train set
+        st.title("Accuracy Metrics :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, reg.predict(x_test_trany))
         recall_test = recall_score(y_test, reg.predict(x_test_trany), average='weighted')
