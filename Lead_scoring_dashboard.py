@@ -82,7 +82,7 @@ with tab1:
     col1.plotly_chart(plot)
 
     # plot correlation matrix of variables
-    st.title("Correlation matrix of variables :")
+    st.markdown("Correlation matrix of variables :")
     corr = df_plot.corr(min_periods=5, numeric_only=True)
     # st.write(corr)
     fig,ax = plt.subplots(figsize=(6,6))
@@ -112,7 +112,7 @@ with tab2:
                                                   'Country', 'Specialization'])
 
     # Checking if the data is imbalanced or not
-    st.title('How balanced is our data')
+    st.markdown('How balanced is our data')
     #sum(y) / len(y)
     tr = y.value_counts(normalize=True)
     tr
@@ -133,7 +133,7 @@ with tab2:
 
     if selected_ML == 'Logistic':
         # plot confussion matrix
-        st.title("Plot confussion matrix :")
+        st.markdown("Plot confussion matrix :")
         confusion_matrix(y_test, predict_test)
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
 
@@ -145,7 +145,7 @@ with tab2:
 
 
         # Accuracy of logistics model test and train set
-        st.title("Accuracy Metrics :")
+       st.markdown("Accuracy Metrics :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, reg.predict(x_test_trany))
         recall_test = recall_score(y_test, reg.predict(x_test_trany), average='weighted')
@@ -177,7 +177,7 @@ with tab2:
         
         
         # Feature importance
-        st.title("Feature importance :")
+        st.markdown("Feature importance :")
         #reg.coef_
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
@@ -185,7 +185,7 @@ with tab2:
         
     if selected_ML == "Decision tree":
         # Plot decision tree
-        st.title("Plot decision tree :")
+       st.markdown("Plot decision tree :")
         clf = tree.DecisionTreeClassifier(max_depth=5)
         clf = clf.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -194,7 +194,7 @@ with tab2:
         st.pyplot(fig)
         
         # feature importance
-        st.title("feature importance DT :")
+        st.markdown("feature importance DT :")
         #clf.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
         t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
@@ -204,7 +204,7 @@ with tab2:
         #Predict_clf
 
         # decision tree confusion matrix
-        st.title("Confusion matrix DT :")
+        st.markdown("Confusion matrix DT :")
         confusion_matrix(y_test, Predict_clf)
         cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
@@ -214,7 +214,7 @@ with tab2:
         st.pyplot()
         
         # Metrics
-        st.title("Accuracy Metrics DT :")
+        st.markdown("Accuracy Metrics DT :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf.predict(x_test_trany))
         recall_test = recall_score(y_test, clf.predict(x_test_trany), average='weighted')
@@ -245,7 +245,7 @@ with tab2:
 
     if selected_ML == "Random forest":
         # plot random forest
-        st.title("Plot Random forest :")
+        st.markdown("Plot Random forest :")
         clf1 = RandomForestClassifier(n_estimators=50, max_depth=5)
         clf1 = clf1.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -257,7 +257,7 @@ with tab2:
         st.pyplot(fig)
 
         # feature importance
-        st.title("Feature importance RF :")
+        st.markdown("Feature importance RF :")
         #clf1.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf1.feature_importances_), 'name': x_train.columns})
         r = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
@@ -266,7 +266,7 @@ with tab2:
         Predict_clf1 = clf1.predict(x_test_trany)
 
         # plot confusion matrix
-        st.title("Confusion matrix RF :")
+        st.markdown("Confusion matrix RF :")
         confusion_matrix(y_test, Predict_clf1)
         cm = confusion_matrix(y_test, Predict_clf1, labels=reg.classes_)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
@@ -276,7 +276,7 @@ with tab2:
         st.pyplot()
 
 
-        st.title("Accuracy Metrics RF :")
+        st.markdown("Accuracy Metrics RF :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf1.predict(x_test_trany))
         recall_test = recall_score(y_test, clf1.predict(x_test_trany), average='weighted')
@@ -305,7 +305,7 @@ with tab2:
         
     if selected_ML == "XGBoost":
         # Plot XGBoost model
-        st.title("Plot XGBoost model :")
+        st.markdown("Plot XGBoost model :")
         GBx = xgb.XGBClassifier(n_estimators=5, max_depth=5)
         GBx.fit(X_transform, y_train)
         #xgb.plot_tree(GBx, num_trees=2)
@@ -313,14 +313,14 @@ with tab2:
         #st.pyplot()
 
         # feature importance
-        st.title("feature importance :")
+        st.markdown("feature importance :")
         #GBx.feature_importances_
         df_plot = pd.DataFrame({'coef': list(GBx.feature_importances_), 'name': x_train.columns})
         x = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(x)
 
         # plot confusion matrix
-        st.title("confusion matrix :")
+        st.markdown("confusion matrix :")
         Predict_GBx = GBx.predict(x_test_trany)
 
         confusion_matrix(y_test, Predict_GBx)
@@ -331,7 +331,7 @@ with tab2:
         plt.show()
         st.pyplot()
 
-        st.title("Accuracy Metrics :")
+        st.markdown("Accuracy Metrics :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, GBx.predict(x_test_trany))
         recall_test = recall_score(y_test, GBx.predict(x_test_trany), average='weighted')
