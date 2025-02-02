@@ -68,7 +68,7 @@ with tab1:
     # Customer conversion in relation to page vie and total visit of website
 
     plot = px.scatter(data_frame=df_plot, x='TotalVisits', y='Page Views Per Visit', color='Converted',
-                      title='Customers who opted out of email service')
+                      title='How page views and website visits relates to conversion')
     col1.plotly_chart(plot)
 
     # Relationship between Occupation and page view
