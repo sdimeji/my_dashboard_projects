@@ -112,7 +112,7 @@ with tab2:
                                                   'Country', 'Specialization'])
 
     # Checking if the data is imbalanced or not
-    st.markdown('How balanced is our data')
+    st.markdown("How balanced is our data")
     #sum(y) / len(y)
     tr = y.value_counts(normalize=True)
     tr
@@ -177,7 +177,7 @@ with tab2:
         
         
         # Feature importance
-        st.markdown("Feature importance :")
+        st.markdown("Feature importance")
         #reg.coef_
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
