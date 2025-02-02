@@ -133,7 +133,7 @@ with tab2:
 
     if selected_ML == 'Logistic':
         # plot confussion matrix
-        st.markdown("Plot confussion matrix :")
+        st.markdown("Plot confussion matrix")
         confusion_matrix(y_test, predict_test)
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
 
@@ -145,7 +145,7 @@ with tab2:
 
 
         # Accuracy of logistics model test and train set
-       st.markdown("Accuracy Metrics :")
+       st.markdown("Accuracy Metrics")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, reg.predict(x_test_trany))
         recall_test = recall_score(y_test, reg.predict(x_test_trany), average='weighted')
@@ -185,7 +185,7 @@ with tab2:
         
     if selected_ML == "Decision tree":
         # Plot decision tree
-       st.markdown("Plot decision tree :")
+       st.markdown("Plot decision tree")
         clf = tree.DecisionTreeClassifier(max_depth=5)
         clf = clf.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -194,7 +194,7 @@ with tab2:
         st.pyplot(fig)
         
         # feature importance
-        st.markdown("feature importance DT :")
+        st.markdown("feature importance DT")
         #clf.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
         t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
@@ -204,7 +204,7 @@ with tab2:
         #Predict_clf
 
         # decision tree confusion matrix
-        st.markdown("Confusion matrix DT :")
+        st.markdown("Confusion matrix DT")
         confusion_matrix(y_test, Predict_clf)
         cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
@@ -214,7 +214,7 @@ with tab2:
         st.pyplot()
         
         # Metrics
-        st.markdown("Accuracy Metrics DT :")
+        st.markdown("Accuracy Metrics DT")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf.predict(x_test_trany))
         recall_test = recall_score(y_test, clf.predict(x_test_trany), average='weighted')
@@ -245,7 +245,7 @@ with tab2:
 
     if selected_ML == "Random forest":
         # plot random forest
-        st.markdown("Plot Random forest :")
+        st.markdown("Plot Random forest")
         clf1 = RandomForestClassifier(n_estimators=50, max_depth=5)
         clf1 = clf1.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -257,7 +257,7 @@ with tab2:
         st.pyplot(fig)
 
         # feature importance
-        st.markdown("Feature importance RF :")
+        st.markdown("Feature importance RF")
         #clf1.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf1.feature_importances_), 'name': x_train.columns})
         r = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
@@ -276,7 +276,7 @@ with tab2:
         st.pyplot()
 
 
-        st.markdown("Accuracy Metrics RF :")
+        st.markdown("Accuracy Metrics RF")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf1.predict(x_test_trany))
         recall_test = recall_score(y_test, clf1.predict(x_test_trany), average='weighted')
@@ -305,7 +305,7 @@ with tab2:
         
     if selected_ML == "XGBoost":
         # Plot XGBoost model
-        st.markdown("Plot XGBoost model :")
+        st.markdown("Plot XGBoost model")
         GBx = xgb.XGBClassifier(n_estimators=5, max_depth=5)
         GBx.fit(X_transform, y_train)
         #xgb.plot_tree(GBx, num_trees=2)
@@ -313,14 +313,14 @@ with tab2:
         #st.pyplot()
 
         # feature importance
-        st.markdown("feature importance :")
+        st.markdown("feature importance")
         #GBx.feature_importances_
         df_plot = pd.DataFrame({'coef': list(GBx.feature_importances_), 'name': x_train.columns})
         x = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(x)
 
         # plot confusion matrix
-        st.markdown("confusion matrix :")
+        st.markdown("confusion matrix")
         Predict_GBx = GBx.predict(x_test_trany)
 
         confusion_matrix(y_test, Predict_GBx)
@@ -331,7 +331,7 @@ with tab2:
         plt.show()
         st.pyplot()
 
-        st.markdown("Accuracy Metrics :")
+        st.markdown("Accuracy Metrics")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, GBx.predict(x_test_trany))
         recall_test = recall_score(y_test, GBx.predict(x_test_trany), average='weighted')
