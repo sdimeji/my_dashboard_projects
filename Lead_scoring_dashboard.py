@@ -83,7 +83,6 @@ with tab1:
 
     # plot correlation matrix of variables
     st.header('Correlation matrix of variables')
-    st.markdown("Correlation matrix of variables :")
     corr = df_plot.corr(min_periods=5, numeric_only=True)
     # st.write(corr)
     fig,ax = plt.subplots(figsize=(6,6))
