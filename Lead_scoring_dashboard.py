@@ -136,12 +136,15 @@ with tab2:
         st.header("Plot confussion matrix")
         confusion_matrix(y_test, predict_test)
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
-
+        fig, ax = plt.subplots(figsize=(2, 2))
+        disp.plot(ax=ax)  # Pass the axis object
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                   display_labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
 
         # Accuracy of logistics model test and train set
@@ -207,11 +210,13 @@ with tab2:
         st.header("Confusion matrix DT")
         confusion_matrix(y_test, Predict_clf)
         cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
         
         # Metrics
         st.header("Accuracy Metrics DT")
@@ -269,11 +274,13 @@ with tab2:
         st.header("Confusion matrix RF :")
         confusion_matrix(y_test, Predict_clf1)
         cm = confusion_matrix(y_test, Predict_clf1, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
 
         st.header("Accuracy Metrics RF")
@@ -325,11 +332,13 @@ with tab2:
 
         confusion_matrix(y_test, Predict_GBx)
         cm = confusion_matrix(y_test, Predict_GBx, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
         st.header("Accuracy Metrics")
         col1, col2, col3, col4 = st.columns(4)
