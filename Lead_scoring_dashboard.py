@@ -136,7 +136,7 @@ with tab2:
         st.header("Plot confussion matrix")
         confusion_matrix(y_test, predict_test)
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
-        fig, ax = plt.subplots(figsize=(1, 1))
+        fig, ax = plt.subplots(figsize=(1.3, 1.3))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                   display_labels=reg.classes_)
         disp.plot(ax=ax)  # Pass the axis object
