@@ -143,10 +143,11 @@ with tab2:
         disp.plot()
         plt.show()
         st.pyplot(fig)
-        st.text("True Negative (TN) 228: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion).
-True Positive (TP) 269: These are the cases where the model correctly predicted the positive class (conversion when the actual outcome was conversion).
-False Positive (FP)  70: These are the cases where the model incorrectly predicted the positive class (conversion when the actual outcome was no conversion).
-False Negative (FN) 75: These are the cases where the model incorrectly predicted the negative class (no conversion when the actual outcome was conversion)")
+        
+        st.text("True Negative (TN) 228: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion)")
+        st.text("True Positive (TP) 269: These are the cases where the model correctly predicted the positive class (conversion when the actual outcome was conversion)")
+        st.text("False Positive (FP)  70: These are the cases where the model incorrectly predicted the positive class (conversion when the actual outcome was no conversion)")
+        st.text("False Negative (FN) 75: These are the cases where the model incorrectly predicted the negative class (no conversion when the actual outcome was conversion)")
 
 
         # Accuracy of logistics model test and train set
