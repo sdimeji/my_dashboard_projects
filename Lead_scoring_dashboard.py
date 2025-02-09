@@ -143,7 +143,7 @@ with tab2:
         disp.plot()
         plt.show()
         st.pyplot(fig)
-        st.markdown("True Negative (TN) 228: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion).
+        st.text("True Negative (TN) 228: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion).
 True Positive (TP) 269: These are the cases where the model correctly predicted the positive class (conversion when the actual outcome was conversion).
 False Positive (FP)  70: These are the cases where the model incorrectly predicted the positive class (conversion when the actual outcome was no conversion).
 False Negative (FN) 75: These are the cases where the model incorrectly predicted the negative class (no conversion when the actual outcome was conversion)")
@@ -179,11 +179,11 @@ False Negative (FN) 75: These are the cases where the model incorrectly predicte
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.markdown("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions.
+        st.text("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions.
 Precision: This measures the accuracy of positive predictions. It tells us how many of the predicted positives were positive.
 Recall (Sensitivity): This measures how many actual positives the model correctly identified.
 F1-Score: This is the harmonic mean of precision and recall. It balances both, giving you an overall measure of the model's performance.")
-st.markdown("The metrics above indicate this model performs well and has an accuracy of 77%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
+st.text("The metrics above indicate this model performs well and has an accuracy of 77%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
         
         
         # Feature importance
