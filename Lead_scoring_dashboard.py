@@ -208,7 +208,7 @@ with tab2:
         st.header("Confusion matrix DT")
         confusion_matrix(y_test, Predict_clf)
         cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
-        fig, ax = plt.subplots(figsize=(1, 1))
+        fig, ax = plt.subplots(figsize=(1.5, 1.5))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
         disp.plot(ax=ax)  # Pass the axis object
@@ -272,7 +272,7 @@ with tab2:
         st.header("Confusion matrix RF :")
         confusion_matrix(y_test, Predict_clf1)
         cm = confusion_matrix(y_test, Predict_clf1, labels=reg.classes_)
-        fig, ax = plt.subplots(figsize=(1, 1))
+        fig, ax = plt.subplots(figsize=(1.5, 1.5))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
         disp.plot(ax=ax)  # Pass the axis object
@@ -330,7 +330,7 @@ with tab2:
 
         confusion_matrix(y_test, Predict_GBx)
         cm = confusion_matrix(y_test, Predict_GBx, labels=reg.classes_)
-        fig, ax = plt.subplots(figsize=(1, 1))
+        fig, ax = plt.subplots(figsize=(1.5, 1.5))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
         disp.plot(ax=ax)  # Pass the axis object
