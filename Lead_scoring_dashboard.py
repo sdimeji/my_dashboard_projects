@@ -71,9 +71,9 @@ with tab1:
 
     plot = px.scatter(data_frame=df_plot, x='TotalVisits', y='Page Views Per Visit', color='Converted',
                       title='How page views and website visits relates to conversion')
-    col1.plotly_chart(plot)
     st.text("This scatter plot explains the trend in data point and relationship between total visit and time spent on company website translates to conversion, I am trying to visualize cluster point and possible outliers in both variables, you can interact with the drop down by changing specialization and lead source to get different results")
-
+    col1.plotly_chart(plot)
+    
     # Relationship between Occupation and page view
     plot = px.box(data_frame=df_plot, x='What is your current occupation', y='Page Views Per Visit', color='Converted',
                   title='How occupation influence page view in relation to convertion')
