@@ -215,6 +215,7 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
         t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(t)
+        st.text('This chart explains how each feature significantly contribute to our model final prediction, the longer the bar the higher the importance')
         
         Predict_clf = clf.predict(x_test_trany, check_input=True)
         #Predict_clf
@@ -230,6 +231,11 @@ with tab2:
         disp.plot()
         plt.show()
         st.pyplot(fig)
+        st.text("True Negative (TN) 234: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion)")
+        st.text("True Positive (TP) 264: These are the cases where the model correctly predicted the positive class (conversion when the actual outcome was conversion)")
+        st.text("False Positive (FP) 64: These are the cases where the model incorrectly predicted the positive class (conversion when the actual outcome was no conversion)")
+        st.text("False Negative (FN) 80: These are the cases where the model incorrectly predicted the negative class (no conversion when the actual outcome was conversion)")
+
         
         # Metrics
         st.header("Accuracy Metrics DT")
@@ -259,6 +265,12 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
+        st.text("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions")
+        st.text("Precision: This measures the accuracy of positive predictions. It tells us how many of the predicted positives were positive")
+        st.text("Recall (Sensitivity): This measures how many actual positives the model correctly identified")
+        st.text("F1-Score: This is the harmonic mean of precision and recall. It balances both, giving an overall measure of the model's performance.")
+        st.text("The metrics above indicate this model performs well and has an accuracy of 78%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
+        
        
 
     if selected_ML == "Random forest":
@@ -273,6 +285,7 @@ with tab2:
                        filled=True);
         fig.savefig('clf1_individualtree.png')
         st.pyplot(fig)
+        st.text('This ensemble machine learning method is explaining visualization of part of our multiple decision trees as output of my training data')
 
         # feature importance
         st.header("Feature importance RF")
@@ -280,6 +293,7 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(clf1.feature_importances_), 'name': x_train.columns})
         r = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(r)
+        st.text('This chart explains how each feature significantly contribute to our model final prediction, the longer the bar the higher the importance')
 
         Predict_clf1 = clf1.predict(x_test_trany)
 
@@ -294,6 +308,11 @@ with tab2:
         disp.plot()
         plt.show()
         st.pyplot(fig)
+        st.text("True Negative (TN) 232: These are the cases where the model correctly predicted the negative class (no conversion when the actual outcome was also no conversion)")
+        st.text("True Positive (TP) 269: These are the cases where the model correctly predicted the positive class (conversion when the actual outcome was conversion)")
+        st.text("False Positive (FP) 66: These are the cases where the model incorrectly predicted the positive class (conversion when the actual outcome was no conversion)")
+        st.text("False Negative (FN) 75: These are the cases where the model incorrectly predicted the negative class (no conversion when the actual outcome was conversion)")
+
 
 
         st.header("Accuracy Metrics RF")
@@ -321,6 +340,11 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
+        st.text("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions")
+        st.text("Precision: This measures the accuracy of positive predictions. It tells us how many of the predicted positives were positive")
+        st.text("Recall (Sensitivity): This measures how many actual positives the model correctly identified")
+        st.text("F1-Score: This is the harmonic mean of precision and recall. It balances both, giving an overall measure of the model's performance.")
+        st.text("The metrics above indicate this model performs well and has an accuracy of 78%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
         
         
     if selected_ML == "XGBoost":
@@ -338,6 +362,7 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(GBx.feature_importances_), 'name': x_train.columns})
         x = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
         st.plotly_chart(x)
+        st.text('This chart explains how each feature significantly contribute to our model final prediction, the longer the bar the higher the importance')
 
         # plot confusion matrix
         st.header("confusion matrix")
@@ -376,6 +401,12 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
+        st.text("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions")
+        st.text("Precision: This measures the accuracy of positive predictions. It tells us how many of the predicted positives were positive")
+        st.text("Recall (Sensitivity): This measures how many actual positives the model correctly identified")
+        st.text("F1-Score: This is the harmonic mean of precision and recall. It balances both, giving an overall measure of the model's performance.")
+        st.text("The metrics above indicate this model performs well and has an accuracy of 77%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
+        
         
     
 
