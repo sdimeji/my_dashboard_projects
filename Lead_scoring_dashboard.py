@@ -58,18 +58,21 @@ with tab1:
     plot = px.bar(data_frame=df_plot, x='Country', y='Total Time Spent on Website', color='Converted', barmode='group',
                   title='How time spent on website by country relates to converted clients', log_y=True)
     col1.plotly_chart(plot)
+    st.text('This chart explain time spent on company website by each country translates to conversion, you can interact with the drop down by changing specialization and lead source to get different results')
 
     # How total time spent is significantly related to lead quality by converted customers
 
     plot = px.box(data_frame=df_plot, x='Lead Quality', y='Total Time Spent on Website', color='Converted',
                   title='How time spent and lead quality leads to conversion')
     col2.plotly_chart(plot)
+    st.text('This boxplot explains how different category of lead quality spend time on company website and translates to conversion, you can interact with the drop down by changing specialization and lead source to get different results')
 
     # Customer conversion in relation to page vie and total visit of website
 
     plot = px.scatter(data_frame=df_plot, x='TotalVisits', y='Page Views Per Visit', color='Converted',
                       title='How page views and website visits relates to conversion')
     col1.plotly_chart(plot)
+    st.text('This scatter plot explains the trend in data point and relationship between total visit and time spent on company website translates to conversion, I am trying to visualize cluster point and possible outliers in both variables, you can interact with the drop down by changing specialization and lead source to get different results')
 
     # Relationship between Occupation and page view
     plot = px.box(data_frame=df_plot, x='What is your current occupation', y='Page Views Per Visit', color='Converted',
