@@ -91,13 +91,14 @@ with tab1:
         vmin=-1, vmax=1, center=0,
         cmap=sns.diverging_palette(20, 220, n=200),
         square=True, annot=True)
-    st.text("This chart explains relationship between each pair of variables in our dataset, strong correlation are close to 1 or -1, while negative correlation are near 0, with this chart we could identify relevant features for our model")
-
+    
     ax.set_xticklabels(
         ax.get_xticklabels(),
         rotation=45,
         horizontalalignment='right')
     st.pyplot(fig)
+    st.text('This chart explains relationship between each pair of variables in our dataset, strong correlation are close to 1 or -1, while negative correlation are near 0, with this chart we could identify relevant features for our model')
+
 
 with tab2:
     # add dropdown widgets
@@ -194,7 +195,7 @@ with tab2:
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
         st.plotly_chart(y)
-        st.text("This chart explains how each feature significantly contribute to our model final prediction, the longer the bar the higher the importance, bars in negative has no significant contribution")
+        st.text('This chart explains how each feature significantly contribute to our model final prediction, the longer the bar the higher the importance, bars in negative has no significant contribution')
     if selected_ML == "Decision tree":
         # Plot decision tree
         st.header("Plot decision tree")
