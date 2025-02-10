@@ -22,6 +22,8 @@ import h2o
 from h2o.automl import H2OAutoML
 h2o.init()
 import joblib
+import graphviz
+from PIL import Image
 
 
 st.set_page_config(layout='wide')
@@ -32,6 +34,9 @@ df.dropna(inplace=True)
 
 # add title to your dashboard
 st.title('Lead scoring dashboard')
+
+st.header(':blue[This project is trying to implement a model that can determine if a lead will be converted or not, using key variables, this model will save resources and time of our sales team, using least time to achieve higher revenue]')
+
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
@@ -69,7 +74,7 @@ with tab1:
     # Customer conversion in relation to page vie and total visit of website
 
     plot = px.scatter(data_frame=df_plot, x='TotalVisits', y='Page Views Per Visit', color='Converted',
-                      title='Customers who opted out of email service')
+                      title='How page views and website visits relates to conversion')
     col1.plotly_chart(plot)
 
     # Relationship between Occupation and page view
@@ -83,6 +88,7 @@ with tab1:
     col1.plotly_chart(plot)
 
     # plot correlation matrix of variables
+    st.header('Correlation matrix of variables')
     corr = df_plot.corr(min_periods=5, numeric_only=True)
     # st.write(corr)
     fig,ax = plt.subplots(figsize=(6,6))
@@ -112,6 +118,7 @@ with tab2:
                                                   'Country', 'Specialization'])
 
     # Checking if the data is imbalanced or not
+    st.header("How balanced is our data")
     r=sum(y) / len(y)
     tr=y.value_counts(normalize=True)
     tr
@@ -132,19 +139,23 @@ with tab2:
 
     if selected_ML == 'Logistic':
         # plot confussion matrix
+        st.header('Confussion matrix')
         confusion_matrix(y_test, predict_test)
-        fig,ax = plt.subplots(figsize=(6,6))
         cm = confusion_matrix(y_test, predict_test, labels=reg.classes_)
+        # Create a figure and axis
+        fig, ax = plt.subplots(figsize=(2, 2))
 
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                   display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
 
         disp.plot()
         plt.show()
+        st.pyplot(fig)
 
 
         # Accuracy of logistics model test and train set
-        st.title("Accuracy Metrics LRM :")
+        st.header('Accuracy Metrics LRM :')
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, reg.predict(x_test_trany))
         recall_test = recall_score(y_test, reg.predict(x_test_trany), average='weighted')
@@ -173,9 +184,10 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.pyplot()
+
 
         # Feature importance
+        st.header("Feature importance")
         #reg.coef_
         df_plot = pd.DataFrame({'coef': list(reg.coef_[0]), 'name': x_train.columns})
         y = (px.bar(data_frame=df_plot, x='coef', y='name', height=2000))
@@ -184,7 +196,7 @@ with tab2:
     if selected_ML == "Decision tree":
 
         # Plot decision tree
-        st.title("Plot decision tree :")
+        st.header("Plot decision tree :")
         clf = tree.DecisionTreeClassifier(max_depth=5)
         clf = clf.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -193,7 +205,7 @@ with tab2:
         st.pyplot(fig)
 
         # feature importance
-        st.title("feature importance DT :")
+        st.header("feature importance DT :")
         #clf.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
         t = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=1000))
@@ -203,17 +215,19 @@ with tab2:
         #Predict_clf
 
         # decision tree confusion matrix
-        st.title("Confusion matrix DT :")
+        st.header("Confusion matrix DT :")
         confusion_matrix(y_test, Predict_clf)
         cm = confusion_matrix(y_test, Predict_clf, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
         # Metrics
-        st.title("Accuracy Metrics DT :")
+        st.header("Accuracy Metrics DT :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf.predict(x_test_trany))
         recall_test = recall_score(y_test, clf.predict(x_test_trany), average='weighted')
@@ -246,7 +260,7 @@ with tab2:
 
     if selected_ML == "Random forest":
         # plot random forest
-        st.title("Plot Random forest :")
+        st.header("Plot Random forest :")
         clf1 = RandomForestClassifier(n_estimators=50, max_depth=5)
         clf1 = clf1.fit(X_transform, y_train)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -258,7 +272,7 @@ with tab2:
         st.pyplot(fig)
 
         # feature importance
-        st.title("Feature importance RF :")
+        st.header("Feature importance RF :")
         #clf1.feature_importances_
         df_plot = pd.DataFrame({'coef': list(clf1.feature_importances_), 'name': x_train.columns})
         r = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=500))
@@ -267,17 +281,19 @@ with tab2:
         Predict_clf1 = clf1.predict(x_test_trany)
 
         # plot confusion matrix
-        st.title("Confusion matrix RF :")
+        st.header("Confusion matrix RF :")
         confusion_matrix(y_test, Predict_clf1)
         cm = confusion_matrix(y_test, Predict_clf1, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
 
-        st.title("Accuracy Metrics RF :")
+        st.header("Accuracy Metrics RF :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, clf1.predict(x_test_trany))
         recall_test = recall_score(y_test, clf1.predict(x_test_trany), average='weighted')
@@ -306,33 +322,39 @@ with tab2:
 
     if selected_ML == "XGBoost":
         # Plot XGBoost model
-        st.title("Plot XGBoost model :")
+        st.header("Plot XGBoost model :")
+
         GBx = xgb.XGBClassifier(n_estimators=5, max_depth=5)
         GBx.fit(X_transform, y_train)
-        xgb.plot_tree(GBx, num_trees=2)
+        # Create a figure
+        fig, ax = plt.subplots(figsize=(5, 5))
+    xgb.plot_tree(GBx, num_trees=2)
         plt.rcParams['figure.figsize'] = [5, 5]
         st.pyplot()
 
         # feature importance
-        st.title("feature importance :")
+        st.header("feature importance :")
         #GBx.feature_importances_
         df_plot = pd.DataFrame({'coef': list(GBx.feature_importances_), 'name': x_train.columns})
         x = (px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=2000))
         st.plotly_chart(x)
 
         # plot confusion matrix
-        st.title("confusion matrix :")
+        st.header("confusion matrix :")
         Predict_GBx = GBx.predict(x_test_trany)
 
         confusion_matrix(y_test, Predict_GBx)
         cm = confusion_matrix(y_test, Predict_GBx, labels=reg.classes_)
+        fig, ax = plt.subplots(figsize=(2, 2))
         disp = ConfusionMatrixDisplay(confusion_matrix=cm,
                                       display_labels=reg.classes_)
+        disp.plot(ax=ax)  # Pass the axis object
+
         disp.plot()
         plt.show()
-        st.pyplot()
+        st.pyplot(fig)
 
-        st.title("Accuracy Metrics :")
+        st.header("Accuracy Metrics :")
         col1, col2, col3, col4 = st.columns(4)
         accuracy_test = accuracy_score(y_test, GBx.predict(x_test_trany))
         recall_test = recall_score(y_test, GBx.predict(x_test_trany), average='weighted')
@@ -343,7 +365,7 @@ with tab2:
         col2.metric("recall test", np.round(recall_test, 2))
         col3.metric("precision test", np.round(precision_test, 2))
         col4.metric("F1 test", np.round(f1_test, 2))
-        st.pyplot()
+
 
         # Train
         accuracy_train = accuracy_score(y_train, GBx.predict(X_transform))
@@ -355,7 +377,7 @@ with tab2:
         col2.metric("recall train", np.round(recall_train, 2))
         col3.metric("precision train", np.round(precision_train, 2))
         col4.metric("F1 train", np.round(f1_train, 2))
-        st.pyplot()
+
 
 
 
