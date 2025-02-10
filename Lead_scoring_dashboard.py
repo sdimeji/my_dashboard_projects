@@ -185,7 +185,7 @@ with tab2:
         st.text("Accuracy: This is the proportion of correct predictions (both TP and TN) over the total predictions")
         st.text("Precision: This measures the accuracy of positive predictions. It tells us how many of the predicted positives were positive")
         st.text("Recall (Sensitivity): This measures how many actual positives the model correctly identified")
-        st.text("F1-Score: This is the harmonic mean of precision and recall. It balances both, giving you an overall measure of the model's performance.")
+        st.text("F1-Score: This is the harmonic mean of precision and recall. It balances both, giving an overall measure of the model's performance.")
         st.text("The metrics above indicate this model performs well and has an accuracy of 77%, but there can be room for further improvement in minimizing false positives and false negatives. The precision and recall show that the model does a decent job of predicting positive outcomes.")
         
         
