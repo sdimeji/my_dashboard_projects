@@ -140,13 +140,11 @@ with tab1:
             'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']
 
     sns.pairplot(df[col2], height=2.5)
-    fig, ax = plt.subplots(figsize=(6, 6))
     plt.tight_layout()
     plt.show()
     st.pyplot()
 
     sns.pairplot(df[col1], height=2.5)
-    fig, ax = plt.subplots(figsize=(6, 6))
     plt.tight_layout()
     plt.show()
     st.pyplot()
