@@ -100,7 +100,7 @@ with tab1:
         rotation=45,
         horizontalalignment='right')
     st.pyplot(fig)
-    st.text('This chart explains relationship between each pair of variables in our dataset, strong correlation are close to 1 or -1, while negative correlation are near 0, with this chart we could identify relevant features for our model')
+    st.text('This chart explains relationship between each pair of variables in our dataset, strong positive correlation are close to 1 and negative -1, while no significant correlation are near 0, with this chart we could identify relevant features for our model')
 
 
 with tab2:
