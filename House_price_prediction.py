@@ -66,7 +66,7 @@ with tab1:
     fig.show()
     col1.plotly_chart(fig)
 
-    fig = px.histogram(data_frame=df_plot, x="propertyType", y="rentEstimate_currentPrice",
+    fig = px.histogram(data_frame=df, x="propertyType", y="rentEstimate_currentPrice",
                        color="saleEstimate_confidenceLevel", barmode="group", marginal="box",
                        hover_data=df.columns, log_y=True,
                        title='Distribution of data of rent prices and property type by confidence level', width=1200,
@@ -74,13 +74,13 @@ with tab1:
     fig.show()
     col2.plotly_chart(fig)
 
-    plot = px.bar(data_frame=df_plot, x='propertyType', y='saleEstimate_currentPrice', color='currentEnergyRating',
+    plot = px.bar(data_frame=df, x='propertyType', y='saleEstimate_currentPrice', color='currentEnergyRating',
                   barmode='group', log_y=True, width=1000, height=500,
                   title='How significant is energy rating on current price of property type')
     plot.show()
     col1.plotly_chart(plot)
 
-    fig = px.histogram(df_plot, x="propertyType", y="saleEstimate_currentPrice", nbins=15, text_auto=True, log_y=True,
+    fig = px.histogram(df, x="propertyType", y="saleEstimate_currentPrice", nbins=15, text_auto=True, log_y=True,
                        width=1000, height=800,
                        title='How different property types are distributed across sales current and history price')
     fig.show()
@@ -98,7 +98,7 @@ with tab1:
     plot.show()
     col2.plotly_chart(plot)
 
-    fig = px.scatter_mapbox(data_frame=df, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1000)
+    fig = px.scatter_mapbox(data_frame=df_plot, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1000)
     fig.show()
     col1.plotly_chart(fig)
 
@@ -140,11 +140,13 @@ with tab1:
             'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']
 
     sns.pairplot(df[col2], height=2.5)
+    fig, ax = plt.subplots(figsize=(6, 6))
     plt.tight_layout()
     plt.show()
     st.pyplot()
 
     sns.pairplot(df[col1], height=2.5)
+    fig, ax = plt.subplots(figsize=(6, 6))
     plt.tight_layout()
     plt.show()
     st.pyplot()
