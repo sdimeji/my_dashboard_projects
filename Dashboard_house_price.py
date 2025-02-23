@@ -8,7 +8,6 @@ from sklearn.preprocessing import StandardScaler,RobustScaler
 from sklearn.model_selection import train_test_split
 import numpy as np
 import xgboost as xgb
-
 import plotly.express as px
 from sklearn import linear_model,tree
 from sklearn.metrics import confusion_matrix,ConfusionMatrixDisplay,accuracy_score,recall_score,precision_score,f1_score,roc_auc_score,RocCurveDisplay
@@ -23,10 +22,10 @@ st.set_page_config(layout='wide')
 df=pd.read_csv("kaggle_london_house_price_data.csv")
 
 #filling a null values using fillna()
-for col in ['bathrooms','bedrooms','floorAreaSqM','livingRooms','rentEstimate_lowerPrice','rentEstimate_currentPrice','rentEstimate_upperPrice','saleEstimate_lowerPrice','saleEstimate_currentPrice','saleEstimate_upperPrice','saleEstimate_valueChange.numericChange','saleEstimate_valueChange.percentageChange','history_percentageChange','history_numericChange']:
+for col in ['bathrooms','bedrooms','floorAreaSqM','livingRooms','rentEstimate_lowerPrice','rentEstimate_currentPrice','rentEstimate_upperPrice','saleEstimate_lowerPrice','saleEstimate_currentPrice','saleEstimate_upperPrice','saleEstimate_valueChange.numericChange','saleEstimate_valueChange.percentageChange']:
     df[col] = df[col].fillna(df[col].mean())
 
-for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confidenceLevel','saleEstimate_ingestedAt','saleEstimate_valueChange.saleDate']:
+for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confidenceLevel','saleEstimate_valueChange.saleDate']:
     df[col] = df[col].fillna('unknown')
 
 # add title to your dashboard
@@ -104,7 +103,7 @@ with tab1:
     col1.plotly_chart(fig)
 
     # identify highly correlated features using a correlation matrix
-    df3 = df.loc[:, ['saleEstimate_currentPrice', 'latitude', 'longitude', 'postcode', 'fullAddress', 'tenure',
+    df3 = df.loc[:, ['saleEstimate_currentPrice', 'latitude', 'longitude', 'tenure',
                      'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice',
                      'saleEstimate_confidenceLevel', 'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']]
     corr = df3.corr(min_periods=5, numeric_only=True)
@@ -136,7 +135,7 @@ with tab1:
     st.pyplot(fig)
 
     col1 = ['bedrooms', 'bathrooms', 'floorAreaSqM', 'livingRooms', 'tenure', 'propertyType']
-    col2 = ['saleEstimate_currentPrice', 'latitude', 'longitude', 'postcode', 'fullAddress', 'tenure',
+    col2 = ['saleEstimate_currentPrice', 'latitude', 'longitude', 'tenure',
             'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice', 'saleEstimate_confidenceLevel',
             'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']
 
