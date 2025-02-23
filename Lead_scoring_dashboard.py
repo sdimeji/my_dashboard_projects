@@ -352,9 +352,9 @@ with tab2:
         st.header("Plot XGBoost model")
         GBx = xgb.XGBClassifier(n_estimators=5, max_depth=5)
         GBx.fit(X_transform, y_train)
-        #xgb.plot_tree(GBx, num_trees=2)
-        #plt.rcParams['figure.figsize'] = [5, 5]
-        #st.pyplot()
+        xgb.plot_tree(GBx, num_trees=2)
+        plt.rcParams['figure.figsize'] = [5, 5]
+        st.pyplot()
 
         # feature importance
         st.header("feature importance")
