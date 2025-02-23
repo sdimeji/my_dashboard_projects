@@ -107,11 +107,11 @@ with tab1:
                      'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice',
                      'saleEstimate_confidenceLevel', 'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']]
     corr = df3.corr(min_periods=5, numeric_only=True)
-    fig, ax = plt.subplots(figsize=(1, 1))
+    fig, ax = plt.subplots(figsize=(3, 3))
     ax = sns.heatmap(
         corr,
         vmin=-1, vmax=1, center=0,
-        cmap=sns.diverging_palette(20, 220, n=200),
+        cmap=sns.diverging_palette(10, 110, n=200),
         square=True, annot=True)
     ax.set_xticklabels(
         ax.get_xticklabels(),
