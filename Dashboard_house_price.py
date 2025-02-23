@@ -52,57 +52,57 @@ with tab1:
     df_plot = df_plot[df_plot['currentEnergyRating'] == selected_currentEnergyRating]
 
     fig = px.box(data_frame=df_plot, x="bedrooms", y="saleEstimate_currentPrice", boxmode='group', height=800,
-                 title='Boxplot of history price and confidence level by tenure')
+                 title='Boxplot of bedroom influencing sale price')
     fig.show()
     col1.plotly_chart(fig)
 
     fig = px.box(data_frame=df_plot, x="livingRooms", y="saleEstimate_currentPrice", boxmode='group', height=800,
-                 title='Boxplot of history price and confidence level by tenure')
+                 title='Boxplot of living room influencing sale price')
     fig.show()
     col2.plotly_chart(fig)
 
     fig = px.box(data_frame=df_plot, x="bathrooms", y="saleEstimate_currentPrice", boxmode='group', height=800,
-                 title='Boxplot of history price and confidence level by tenure')
+                 title='Boxplot of bathroom influencing sale price')
     fig.show()
     col1.plotly_chart(fig)
 
     fig = px.histogram(data_frame=df, x="propertyType", y="rentEstimate_currentPrice",
                        color="saleEstimate_confidenceLevel", barmode="group", marginal="box",
                        hover_data=df.columns, log_y=True,
-                       title='Distribution of data of rent prices and property type by confidence level', width=1200,
+                       title='Property type influencing sale price by confidence level', width=1200,
                        height=500)
     fig.show()
     col2.plotly_chart(fig)
 
     plot = px.bar(data_frame=df, x='propertyType', y='saleEstimate_currentPrice', color='currentEnergyRating',
                   barmode='group', log_y=True, width=1000, height=500,
-                  title='How significant is energy rating on current price of property type')
+                  title='Property type influencing sale price by energy rating')
     plot.show()
     col1.plotly_chart(plot)
 
     fig = px.histogram(df, x="propertyType", y="saleEstimate_currentPrice", nbins=15, text_auto=True, log_y=True,
                        width=1000, height=800,
-                       title='How different property types are distributed across sales current and history price')
+                       title='Distribution of sale price across property type')
     fig.show()
     col2.plotly_chart(fig)
 
     fig = px.histogram(df_plot, x="floorAreaSqM", y="saleEstimate_currentPrice", nbins=15, text_auto=True, log_y=True,
                        width=1000, height=800,
-                       title='How different property types are distributed across sales current and history price')
+                       title='Distribution of sale price across floor area sqmtr')
     fig.show()
     col1.plotly_chart(fig)
 
     plot = px.scatter(data_frame=df, x='saleEstimate_currentPrice', y="rentEstimate_currentPrice", color="tenure",
-                      title='Relationship of current rent and sales prices by confidence level', trendline="ols",
+                      title='How significant is the relationship between rent and sales prices by tenure', trendline="ols",
                       width=1000, height=500)
     plot.show()
     col2.plotly_chart(plot)
 
-    fig = px.scatter_mapbox(data_frame=df_plot, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1000)
+    fig = px.scatter_mapbox(data_frame=df_plot, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1000,title='Sales price distribution by property type across various location')
     fig.show()
     col1.plotly_chart(fig)
 
-    # identify highly correlated features using a correlation matrix
+    st.header('identify highly correlated features using a correlation matrix')
     df3 = df.loc[:, ['saleEstimate_currentPrice', 'latitude', 'longitude', 'tenure',
                      'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice',
                      'saleEstimate_confidenceLevel', 'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']]
@@ -119,7 +119,7 @@ with tab1:
         horizontalalignment='right')
     st.pyplot(fig)
 
-    # identify highly correlated features using a correlation matrix
+    st.header('identify highly correlated features using a correlation matrix')
     df4 = df.loc[:, ['bedrooms', 'bathrooms', 'floorAreaSqM', 'livingRooms', 'tenure', 'propertyType']]
     corr = df4.corr(min_periods=5, numeric_only=True)
     fig, ax = plt.subplots(figsize=(6, 6))
@@ -134,6 +134,7 @@ with tab1:
         horizontalalignment='right')
     st.pyplot(fig)
 
+    st.header('important xteristics of dataset')
     col1 = ['bedrooms', 'bathrooms', 'floorAreaSqM', 'livingRooms', 'tenure', 'propertyType']
     col2 = ['saleEstimate_currentPrice', 'latitude', 'longitude', 'tenure',
             'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice', 'saleEstimate_confidenceLevel',
