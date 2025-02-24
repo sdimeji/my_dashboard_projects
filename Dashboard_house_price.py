@@ -107,7 +107,7 @@ with tab1:
                      'rentEstimate_upperPrice', 'history_price', 'rentEstimate_currentPrice',
                      'saleEstimate_confidenceLevel', 'saleEstimate_upperPrice', 'currentEnergyRating', 'propertyType']]
     corr = df3.corr(min_periods=5, numeric_only=True)
-    fig, ax = plt.subplots(figsize=(3, 3))
+    fig, ax = plt.subplots(figsize=(6, 6))
     ax = sns.heatmap(
         corr,
         vmin=-1, vmax=1, center=0,
@@ -122,7 +122,7 @@ with tab1:
     st.header('identify highly correlated features using a correlation matrix')
     df4 = df.loc[:, ['bedrooms', 'bathrooms', 'floorAreaSqM', 'livingRooms', 'tenure', 'propertyType']]
     corr = df4.corr(min_periods=5, numeric_only=True)
-    fig, ax = plt.subplots(figsize=(1, 1))
+    fig, ax = plt.subplots(figsize=(5, 5))
     ax = sns.heatmap(
         corr,
         vmin=-1, vmax=1, center=0,
