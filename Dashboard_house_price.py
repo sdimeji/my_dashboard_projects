@@ -98,7 +98,7 @@ with tab1:
     plot.show()
     col2.plotly_chart(plot)
 
-    fig = px.scatter_mapbox(data_frame=df_plot, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1000,title='Sales price distribution by property type across various location')
+    fig = px.scatter_mapbox(data_frame=df_plot, lat="latitude", lon="longitude", color="propertyType", size="saleEstimate_currentPrice",color_continuous_scale=px.colors.cyclical.IceFire, size_max=15,mapbox_style='open-street-map',height=800, width=1200,title='Sales price distribution by property type across various location')
     fig.show()
     col1.plotly_chart(fig)
 
