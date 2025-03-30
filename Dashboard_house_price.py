@@ -152,7 +152,8 @@ with tab1:
     plt.tight_layout()
     plt.show()
     st.pyplot()
-with tab2:
+    
+    with tab2:
     # add dropdown widgets
     selected_ML = st.selectbox(label='Model', options=["Random forest", "Gradient Boosting"])
     # split data into test and train data
@@ -169,7 +170,7 @@ with tab2:
     X_trans = rob_trans.fit_transform(x_train)
     X_test = rob_trans.transform(x_test)
 
-    if selected_ML == 'Random forest':
+        if selected_ML == 'Random forest':
         st.header("Plot random forest")
         clf = RandomForestRegressor(n_estimators=250, max_depth=5, max_features=1.0, criterion='squared_error')
         clf.fit(X_trans, y_train)
