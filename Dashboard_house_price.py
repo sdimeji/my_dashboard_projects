@@ -36,7 +36,7 @@ st.header(':blue[This project is trying to predict house sales prices base on fe
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
 with tab1:
-    # compute discreet values that would serve as the control for your widget
+    #Compute discreet values that would serve as the control for your widget
     propertyType_options = df['propertyType'].unique()
     currentEnergyRating_options = df['currentEnergyRating'].unique()
 
@@ -48,7 +48,7 @@ with tab1:
 
     selected_currentEnergyRating = col2.selectbox(label='currentEnergyRating', options=currentEnergyRating_options)
 
-    # filter your dataset based on widget selection
+    #filter your dataset based on widget selection
     df_plot = df[df['propertyType'] == selected_propertyType]
     df_plot = df_plot[df_plot['currentEnergyRating'] == selected_currentEnergyRating]
 
