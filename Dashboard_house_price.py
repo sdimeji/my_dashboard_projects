@@ -211,7 +211,7 @@ with tab2:
         col7.metric("m sq error test", np.round(mean_sqtest, 2))
         col8.metric("M sq error train", np.round(mean_sqtrain, 2))
 
-    if selected_ML=="Gradient Boosting"
+    if selected_ML=="Gradient Boosting":
         st.header("Plot Gradient Boosting")
         reg = GradientBoostingRegressor(random_state=0, n_estimators=250, max_depth=10)
         reg.fit(X_trans, y_train)
