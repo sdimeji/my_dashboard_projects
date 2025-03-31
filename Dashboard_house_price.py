@@ -30,8 +30,8 @@ for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confiden
     df[col] = df[col].fillna('unknown')
 
 # add title to your dashboard
-st.title('London house price prediction dashboard')
-st.header(':blue[This project is trying to predict house sales prices base on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024 in London]')
+st.title('House price prediction dashboard')
+st.header(':blue[This project is trying to predict house sales prices based on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024 in London]')
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
