@@ -218,7 +218,7 @@ with tab2:
                                title='Random forest regression prediction vs actual value', height=800)
         st.plotly_chart(rand_plot)
 
-    if selected_ML=='Gradient Boosting':
+    if selected_ML=="Gradient Boosting":
         st.header("Plot Gradient Boosting")
         reg = GradientBoostingRegressor(random_state=0, n_estimators=250, max_depth=10)
         reg.fit(X_trans, y_train)
@@ -248,8 +248,8 @@ with tab2:
         col6.metric("Mae train %", np.round(mean_abs_trainpercengd, 3))
         col7.metric("m sq error test", np.round(mean_sqtestgd, 2))
         col8.metric("M sq error train", np.round(mean_sqtraingd, 2))
-
-         st.header("Gradient Boosting regression chart ")
+        
+        st.header("Gradient Boosting regression chart ")
         x_pred = reg.predict(X_test)
         Gd_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
                              title='Gradient boosting regression prediction vs actual value', height=800)
