@@ -211,14 +211,14 @@ with tab2:
         col7.metric("m sq error test", np.round(mean_sqtest, 2))
         col8.metric("M sq error train", np.round(mean_sqtrain, 2))
 
-    # plot of actual and predicted value
+        # plot of actual and predicted value
         st.header("RF regression chart ")
         x_pred = clf.predict(X_test)
         rand_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
                                title='Random forest regression prediction vs actual value', height=800)
         st.plotly_chart(rand_plot)
 
-    if selected_ML=="Gradient Boosting":
+    if selected_ML=='Gradient Boosting':
         st.header("Plot Gradient Boosting")
         reg = GradientBoostingRegressor(random_state=0, n_estimators=250, max_depth=10)
         reg.fit(X_trans, y_train)
