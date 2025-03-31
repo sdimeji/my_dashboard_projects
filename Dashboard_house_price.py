@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression,RANSACRegressor
 from sklearn.preprocessing import StandardScaler,RobustScaler,LabelEncoder
-from sklearn.model_selection import train_test_split
 import numpy as np
+from sklearn.model_selection import train_test_split
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error,r2_score,mean_absolute_error,mean_absolute_percentage_error,max_error
 from sklearn.datasets import make_friedman1
@@ -34,8 +34,9 @@ st.title('London house price prediction dashboard')
 st.header(':blue[This project is trying to predict house sales prices base on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024 in London]')
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
+
 with tab1:
-    #Compute discreet values that would serve as the control for your widget
+    # compute discreet values that would serve as the control for your widget
     propertyType_options = df['propertyType'].unique()
     currentEnergyRating_options = df['currentEnergyRating'].unique()
 
@@ -47,7 +48,7 @@ with tab1:
 
     selected_currentEnergyRating = col2.selectbox(label='currentEnergyRating', options=currentEnergyRating_options)
 
-    #filter your dataset based on widget selection
+    # filter your dataset based on widget selection
     df_plot = df[df['propertyType'] == selected_propertyType]
     df_plot = df_plot[df_plot['currentEnergyRating'] == selected_currentEnergyRating]
 
@@ -200,14 +201,14 @@ with tab2:
         mean_sqtest=mean_squared_error(y_test, y_test_pred)
         mean_sqtrain=mean_squared_error(y_train, y_train_pred)
 
-        col1.metric("R2 train", np.round(R2sq_train, 3))
-        col2.metric("R2 test", np.round(R2sq_test, 3))
-        col3.metric("mae test", np.round(mean_abs_test, 2))
-        col4.metric("Mae test %", np.round(mean_abs_testpercen, 3))
-        col5.metric("mae train", np.round(mean_abs_train, 2))
-        col6.metric("Mae train %", np.round(mean_abs_trainpercen, 3))
-        col7.metric("mse test", np.round(mean_sqtest, 2))
-        col8.metric("Mse train", np.round(mean_sqtrain, 2))
+        col1.metric("R2 value train", np.round(R2sq_train, 3))
+        col2.metric("R2 value test", np.round(R2sq_test, 3))
+        col3.metric("mean absolute error test", np.round(mean_abs_test, 2))
+        col4.metric("Mean absolute error test %", np.round(mean_abs_testpercen, 3))
+        col5.metric("mean absolute error train", np.round(mean_abs_train, 2))
+        col6.metric("Mean absolute error train %", np.round(mean_abs_trainpercen, 3))
+        col7.metric("mean sq error test", np.round(mean_sqtest, 2))
+        col8.metric("Mean sq error train", np.round(mean_sqtrain, 2))
 
         # plot of actual and predicted value
         st.header("RF regression chart ")
