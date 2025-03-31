@@ -211,6 +211,43 @@ with tab2:
         col7.metric("m sq error test", np.round(mean_sqtest, 2))
         col8.metric("M sq error train", np.round(mean_sqtrain, 2))
 
+    if selected_ML=="Gradient Boosting"
+        st.header("Plot Gradient Boosting")
+        reg = GradientBoostingRegressor(random_state=0, n_estimators=250, max_depth=10)
+        reg.fit(X_trans, y_train)
+
+        st.header("Feature importance Gradient Boosting")
+
+        df_plot = pd.DataFrame({'coef': list(reg.feature_importances_), 'name': x_train.columns})
+        b=px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=800)
+        st.plotly_chart(b)
+
+        st.header("Metrics Gradient Boosting")
+        col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
+        R2sq_traingd = r2_score(y_train, reg.predict(X_trans))
+        R2sq_testgd = r2_score(y_test, reg.predict(X_test))
+        mean_abs_testgd = mean_absolute_error(y_test, reg.predict(X_test))
+        mean_abs_testpercengd = mean_absolute_percentage_error(y_test, reg.predict(X_test))
+        mean_abs_traingd = mean_absolute_error(y_train, reg.predict(X_trans))
+        mean_abs_trainpercengd = mean_absolute_percentage_error(y_train, reg.predict(X_trans))
+        mean_sqtestgd = mean_squared_error(y_test, reg.predict(X_test))
+        mean_sqtraingd = mean_squared_error(y_train, reg.predict(X_trans))
+
+        col1.metric("R2 train", np.round(R2sq_traingd, 3))
+        col2.metric("R2 test", np.round(R2sq_testgd, 3))
+        col3.metric("mae test", np.round(mean_abs_testgd, 2))
+        col4.metric("Mae test %", np.round(mean_abs_testpercengd, 3))
+        col5.metric("mae train", np.round(mean_abs_traingd, 2))
+        col6.metric("Mae train %", np.round(mean_abs_trainpercengd, 3))
+        col7.metric("m sq error test", np.round(mean_sqtestgd, 2))
+        col8.metric("M sq error train", np.round(mean_sqtraingd, 2))
+
+        x_pred = reg.predict(X_test)
+        Gd_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
+                             title='Gradient boosting regression prediction vs actual value', height=800)
+        st.plotly_chart(Gd_plot)
+
+
         # plot of actual and predicted value
         st.header("RF regression chart ")
         x_pred = clf.predict(X_test)
