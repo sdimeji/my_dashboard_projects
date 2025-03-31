@@ -201,14 +201,14 @@ with tab2:
         mean_sqtest=mean_squared_error(y_test, y_test_pred)
         mean_sqtrain=mean_squared_error(y_train, y_train_pred)
 
-        col1.metric("R2 value train", np.round(R2sq_train, 3))
-        col2.metric("R2 value test", np.round(R2sq_test, 3))
-        col3.metric("mean absolute error test", np.round(mean_abs_test, 2))
-        col4.metric("Mean absolute error test %", np.round(mean_abs_testpercen, 3))
-        col5.metric("mean absolute error train", np.round(mean_abs_train, 2))
-        col6.metric("Mean absolute error train %", np.round(mean_abs_trainpercen, 3))
-        col7.metric("mean sq error test", np.round(mean_sqtest, 2))
-        col8.metric("Mean sq error train", np.round(mean_sqtrain, 2))
+        col1.metric("R2 train", np.round(R2sq_train, 3))
+        col2.metric("R2 test", np.round(R2sq_test, 3))
+        col3.metric("mae test", np.round(mean_abs_test, 2))
+        col4.metric("Mae test %", np.round(mean_abs_testpercen, 3))
+        col5.metric("mae train", np.round(mean_abs_train, 2))
+        col6.metric("Mae train %", np.round(mean_abs_trainpercen, 3))
+        col7.metric("m sq error test", np.round(mean_sqtest, 2))
+        col8.metric("M sq error train", np.round(mean_sqtrain, 2))
 
         # plot of actual and predicted value
         st.header("RF regression chart ")
