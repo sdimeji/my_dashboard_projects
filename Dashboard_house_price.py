@@ -191,7 +191,8 @@ with tab2:
         st.plotly_chart(r)
 
         st.header("Metrics RF")
-        col1, col2, col3, col4,col5,col6,col7,col8 = st.columns(8)
+        col1, col2, col3, col4 = st.columns(4)
+        col5,col6,col7,col8 = st.columns(4)
         R2sq_train=r2_score(y_train, y_train_pred)
         R2sq_test=r2_score(y_test, y_test_pred)
         mean_abs_test=mean_absolute_error(y_test, y_test_pred)
