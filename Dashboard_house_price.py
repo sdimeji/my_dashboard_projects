@@ -166,14 +166,15 @@ with tab2:
 
     # use robust scaler to control outliers
     rob_trans = joblib.load('RobustScaler.pkl')
-    clf = joblib.load('House RFmodel.pkl')
+    
 
     X_trans = rob_trans.fit_transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
         st.header("Implement random forest")
-
+        clf = joblib.load('House RFmodel.pkl')
+        
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -192,7 +193,9 @@ with tab2:
         st.plotly_chart(r)
 
         st.header("Metrics RF")
-        col1, col2, col3, col4,col5,col6,col7,col8 = st.columns(8)
+        col1, col2, col3, col4,
+        col5,col6,col7,col8 = st.columns(8)
+        
         R2sq_train=r2_score(y_train, y_train_pred)
         R2sq_test=r2_score(y_test, y_test_pred)
         mean_abs_test=mean_absolute_error(y_test, y_test_pred)
@@ -229,7 +232,9 @@ with tab2:
         st.plotly_chart(b)
 
         st.header("Metrics Gradient Boosting")
-        col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
+        col1, col2, col3, col4, 
+        col5, col6, col7, col8 = st.columns(8)
+        
         R2sq_traingd = r2_score(y_train, reg.predict(X_trans))
         R2sq_testgd = r2_score(y_test, reg.predict(X_test))
         mean_abs_testgd = mean_absolute_error(y_test, reg.predict(X_test))
