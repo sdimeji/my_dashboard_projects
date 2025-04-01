@@ -165,14 +165,15 @@ with tab2:
     x_train, x_test, y_train, y_test = train_test_split(X_enc, y, test_size=0.33, random_state=20)
 
     # use robust scaler to control outliers
-    rob_trans = RobustScaler()
+    rob_trans = joblib.load('RobustScaler.pkl')
+    clf = joblib.load('House RFmodel.pkl')
+
     X_trans = rob_trans.fit_transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
-        st.header("Plot random forest")
-        clf = RandomForestRegressor(n_estimators=250, max_depth=5, max_features=1.0, criterion='squared_error')
-        clf.fit(X_trans, y_train)
+        st.header("Implement random forest")
+
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -191,8 +192,7 @@ with tab2:
         st.plotly_chart(r)
 
         st.header("Metrics RF")
-        col1, col2, col3, col4 = st.columns(4)
-        col5,col6,col7,col8 = st.columns(4)
+        col1, col2, col3, col4,col5,col6,col7,col8 = st.columns(8)
         R2sq_train=r2_score(y_train, y_train_pred)
         R2sq_test=r2_score(y_test, y_test_pred)
         mean_abs_test=mean_absolute_error(y_test, y_test_pred)
@@ -202,14 +202,14 @@ with tab2:
         mean_sqtest=mean_squared_error(y_test, y_test_pred)
         mean_sqtrain=mean_squared_error(y_train, y_train_pred)
 
-        col1.metric("R2 train", np.round(R2sq_train, 3))
-        col2.metric("R2 test", np.round(R2sq_test, 3))
-        col3.metric("mae test", np.round(mean_abs_test, 2))
-        col4.metric("Mae test %", np.round(mean_abs_testpercen, 3))
-        col5.metric("mae train", np.round(mean_abs_train, 2))
-        col6.metric("Mae train %", np.round(mean_abs_trainpercen, 3))
-        col7.metric("m sq error test", np.round(mean_sqtest, 2))
-        col8.metric("M sq error train", np.round(mean_sqtrain, 2))
+        col1.metric("R2 value train", np.round(R2sq_train, 3))
+        col2.metric("R2 value test", np.round(R2sq_test, 3))
+        col3.metric("mean absolute error test", np.round(mean_abs_test, 2))
+        col4.metric("Mean absolute error test %", np.round(mean_abs_testpercen, 3))
+        col5.metric("mean absolute error train", np.round(mean_abs_train, 2))
+        col6.metric("Mean absolute error train %", np.round(mean_abs_trainpercen, 3))
+        col7.metric("mean sq error test", np.round(mean_sqtest, 2))
+        col8.metric("Mean sq error train", np.round(mean_sqtrain, 2))
 
         # plot of actual and predicted value
         st.header("RF regression chart ")
@@ -219,9 +219,8 @@ with tab2:
         st.plotly_chart(rand_plot)
 
     if selected_ML=="Gradient Boosting":
-        st.header("Plot Gradient Boosting")
-        reg = GradientBoostingRegressor(random_state=0, n_estimators=250, max_depth=10)
-        reg.fit(X_trans, y_train)
+        st.header("Implement Gradient Boosting")
+        reg= joblib.load('HouseGdBmodel.pkl')
 
         st.header("Feature importance Gradient Boosting")
 
@@ -248,8 +247,7 @@ with tab2:
         col6.metric("Mae train %", np.round(mean_abs_trainpercengd, 3))
         col7.metric("m sq error test", np.round(mean_sqtestgd, 2))
         col8.metric("M sq error train", np.round(mean_sqtraingd, 2))
-        
-        st.header("Gradient Boosting regression chart ")
+
         x_pred = reg.predict(X_test)
         Gd_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
                              title='Gradient boosting regression prediction vs actual value', height=800)
