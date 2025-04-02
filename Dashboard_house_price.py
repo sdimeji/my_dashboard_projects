@@ -166,14 +166,13 @@ with tab2:
 
     # use robust scaler to control outliers
     rob_trans = joblib.load('RobustScaler.pkl')
-    
+    clf = joblib.load('House RFmodel.pkl')
 
     X_trans = rob_trans.fit_transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
         st.header("Implement random forest")
-        clf = joblib.load('House RFmodel.pkl')
         
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
