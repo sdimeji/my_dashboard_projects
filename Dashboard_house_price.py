@@ -165,8 +165,8 @@ with tab2:
     x_train, x_test, y_train, y_test = train_test_split(X_enc, y, test_size=0.33, random_state=20)
 
     # use robust scaler to control outliers
-    rob_trans = joblib.load('RobustScaler.pkl')
-    clf = joblib.load('House RFmodel.pkl')
+    rob_trans=joblib.load('RobustScaler.pkl')
+    clf=joblib.load('House RFmodel.pkl')
 
     X_trans = rob_trans.fit_transform(x_train)
     X_test = rob_trans.transform(x_test)
