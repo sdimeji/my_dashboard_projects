@@ -193,8 +193,8 @@ with tab2:
         st.plotly_chart(r)
 
         st.header("Metrics RF")
-        col1, col2, col3, col4,
-        col5,col6,col7,col8 = st.columns(8)
+        col1, col2, col3, col4=st.columns(4)
+        col5,col6,col7,col8 = st.columns(4)
         
         R2sq_trainrf=r2_score(y_train, y_train_pred)
         R2sq_testrf=r2_score(y_test, y_test_pred)
@@ -232,8 +232,8 @@ with tab2:
         st.plotly_chart(b)
 
         st.header("Metrics Gradient Boosting")
-        col1, col2, col3, col4, 
-        col5, col6, col7, col8 = st.columns(8)
+        col1, col2, col3, col4=st.columns(4)
+        col5,col6,col7,col8 = st.columns(4)
         
         R2sq_traingd = r2_score(y_train, reg.predict(X_trans))
         R2sq_testgd = r2_score(y_test, reg.predict(X_test))
