@@ -16,6 +16,7 @@ from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor,His
 from sklearn import svm
 from sklearn.svm import SVR
 from IPython.display import display
+import joblib
 
 st.set_page_config(layout='wide')
 
