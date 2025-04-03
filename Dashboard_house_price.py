@@ -167,13 +167,15 @@ with tab2:
 
     # use robust scaler to control outliers
     rob_trans = joblib.load('rob_trans.pkl')
+    clf = joblib.load('HouseRFmodel.pkl')
+    reg= joblib.load('HouseGdBmodel.pkl')
     
     X_trans = rob_trans.transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
-        st.header("Plot random forest")
-        clf = joblib.load('HouseRFmodel.pkl')
+        st.header("Implement random forest")
+       
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -220,8 +222,7 @@ with tab2:
         st.plotly_chart(rand_plot)
 
     if selected_ML=="Gradient Boosting":
-        st.header("Plot Gradient Boosting")
-        reg= joblib.load('HouseGdBmodel.pkl')
+        st.header("Implement Gradient Boosting")
 
         st.header("Feature importance Gradient Boosting")
 
