@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.linear_model import LinearRegression,RANSACRegressor
-from sklearn.preprocessing import StandardScaler,RobustScaler,LabelEncoder
+from sklearn.preprocessing import RobustScaler,LabelEncoder
 import numpy as np
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
@@ -32,7 +32,7 @@ for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confiden
 
 # add title to your dashboard
 st.title('House price prediction dashboard')
-st.header(':blue[This project is trying to predict house sales prices based on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024 in London]')
+st.header(':blue[This project is trying to predict house sales prices base on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024 in London]')
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
@@ -166,15 +166,14 @@ with tab2:
     x_train, x_test, y_train, y_test = train_test_split(X_enc, y, test_size=0.33, random_state=20)
 
     # use robust scaler to control outliers
-    rob_trans=joblib.load('RobustScaler.pkl')
-    clf=joblib.load('House RFmodel.pkl')
-
-    X_trans = rob_trans.fit_transform(x_train)
+    rob_trans = joblib.load('rob_trans.pkl')
+    
+    X_trans = rob_trans.transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
-        st.header("Implement random forest")
-        
+        st.header("Plot random forest")
+        clf = joblib.load('HouseRFmodel.pkl')
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
@@ -195,24 +194,23 @@ with tab2:
         st.header("Metrics RF")
         col1, col2, col3, col4=st.columns(4)
         col5,col6,col7,col8 = st.columns(4)
-        
-        R2sq_trainrf=r2_score(y_train, y_train_pred)
-        R2sq_testrf=r2_score(y_test, y_test_pred)
-        mean_abs_testrf=mean_absolute_error(y_test, y_test_pred)
-        mean_abs_testpercenrf=mean_absolute_percentage_error(y_test, y_test_pred)
-        mean_abs_trainrf=mean_absolute_error(y_train, y_train_pred)
-        mean_abs_trainpercenrf=mean_absolute_percentage_error(y_train, y_train_pred)
-        mean_sqtestrf=mean_squared_error(y_test, y_test_pred)
-        mean_sqtrainrf=mean_squared_error(y_train, y_train_pred)
+        R2sq_train=r2_score(y_train, y_train_pred)
+        R2sq_test=r2_score(y_test, y_test_pred)
+        mean_abs_test=mean_absolute_error(y_test, y_test_pred)
+        mean_abs_testpercen=mean_absolute_percentage_error(y_test, y_test_pred)
+        mean_abs_train=mean_absolute_error(y_train, y_train_pred)
+        mean_abs_trainpercen=mean_absolute_percentage_error(y_train, y_train_pred)
+        mean_sqtest=mean_squared_error(y_test, y_test_pred)
+        mean_sqtrain=mean_squared_error(y_train, y_train_pred)
 
-        col1.metric("R2 value train", np.round(R2sq_trainrf, 3))
-        col2.metric("R2 value test", np.round(R2sq_testrf, 3))
-        col3.metric("mean absolute error test", np.round(mean_abs_testrf, 2))
-        col4.metric("Mean absolute error test %", np.round(mean_abs_testpercenrf, 3))
-        col5.metric("mean absolute error train", np.round(mean_abs_trainrf, 2))
-        col6.metric("Mean absolute error train %", np.round(mean_abs_trainpercenrf, 3))
-        col7.metric("mean sq error test", np.round(mean_sqtestrf, 2))
-        col8.metric("Mean sq error train", np.round(mean_sqtrainrf, 2))
+        col1.metric("R2 value train", np.round(R2sq_train, 3))
+        col2.metric("R2 value test", np.round(R2sq_test, 3))
+        col3.metric("mean absolute error test", np.round(mean_abs_test, 2))
+        col4.metric("Mean absolute error test %", np.round(mean_abs_testpercen, 3))
+        col5.metric("mean absolute error train", np.round(mean_abs_train, 2))
+        col6.metric("Mean absolute error train %", np.round(mean_abs_trainpercen, 3))
+        col7.metric("mean sq error test", np.round(mean_sqtest, 2))
+        col8.metric("Mean sq error train", np.round(mean_sqtrain, 2))
 
         # plot of actual and predicted value
         st.header("RF regression chart ")
@@ -222,7 +220,7 @@ with tab2:
         st.plotly_chart(rand_plot)
 
     if selected_ML=="Gradient Boosting":
-        st.header("Implement Gradient Boosting")
+        st.header("Plot Gradient Boosting")
         reg= joblib.load('HouseGdBmodel.pkl')
 
         st.header("Feature importance Gradient Boosting")
@@ -233,8 +231,7 @@ with tab2:
 
         st.header("Metrics Gradient Boosting")
         col1, col2, col3, col4=st.columns(4)
-        col5,col6,col7,col8 = st.columns(4)
-        
+        col5, col6, col7, col8 = st.columns(4)
         R2sq_traingd = r2_score(y_train, reg.predict(X_trans))
         R2sq_testgd = r2_score(y_test, reg.predict(X_test))
         mean_abs_testgd = mean_absolute_error(y_test, reg.predict(X_test))
