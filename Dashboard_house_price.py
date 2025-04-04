@@ -180,7 +180,7 @@ with tab2:
         y_test_pred = clf.predict(X_test)
         fig, axes = plt.subplots(nrows=1, ncols=1, figsize=(4, 4), dpi=800)
 
-        tree.plot_tree(clf.estimators_[5], max_depth=10,
+        tree.plot_tree(clf.estimators_[5], max_depth=3,
                        feature_names=None,
                        class_names=None,
                        filled=True, fontsize=1);
