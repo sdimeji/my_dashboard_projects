@@ -165,15 +165,13 @@ with tab2:
 
     # use robust scaler to control outliers
     rob_trans = joblib.load('rob_trans.pkl')
-    clf = joblib.load('HouseRFmodel.pkl')
-    reg= joblib.load('HouseGdBmodel.pkl')
-    reg2 = joblib.load('HouseSGDmodel.pkl')
-    
+               
     X_trans = rob_trans.transform(x_train)
     X_test = rob_trans.transform(x_test)
 
     if selected_ML == 'Random forest':
         st.header("Implement random forest")
+        clf = joblib.load('HouseRFmodel.pkl')
        
         y_train_pred = clf.predict(X_trans)
         y_test_pred = clf.predict(X_test)
@@ -222,6 +220,7 @@ with tab2:
 
     if selected_ML=="Gradient Boosting":
         st.header("Implement Gradient Boosting")
+        reg= joblib.load('HouseGdBmodel.pkl')
 
         st.header("Feature importance Gradient Boosting")
 
@@ -257,6 +256,7 @@ with tab2:
 
     if selected_ML == "Stochastic Gradient Descent":
             st.header("Implement Stochastic Gradient Descent")
+            reg2 = joblib.load('HouseSGDmodel.pkl')
 
             st.header("Metrics Stochastic Gradient Descent")
             col1, col2, col3, col4 = st.columns(4)
@@ -284,5 +284,4 @@ with tab2:
             reg2_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
                                    title='Stochastic Gradient Descent regression prediction vs actual value',
                                    height=800)
-            
             st.plotly_chart(reg2_plot)
