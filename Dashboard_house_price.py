@@ -45,9 +45,9 @@ with tab1:
     col1, col2 = st.columns([1, 1])
 
     # add dropdown widgets
-    selected_propertyType = col1.selectbox(label='propertyType', options=propertyType_options,placeholder="Choose an option")
+    selected_propertyType = col1.selectbox(label='propertyType', options=propertyType_options,placeholder='Choose an option')
 
-    selected_currentEnergyRating = col2.selectbox(label='currentEnergyRating', options=currentEnergyRating_options,placeholder="Choose an option")
+    selected_currentEnergyRating = col2.selectbox(label='currentEnergyRating', options=currentEnergyRating_options,placeholder='Choose an option')
 
     # filter your dataset based on widget selection
     df_plot = df[df['propertyType'] == selected_propertyType]
@@ -155,7 +155,7 @@ with tab1:
     st.pyplot()
 with tab2:
     # add dropdown widgets
-    selected_ML = st.selectbox(label='Model',placeholder="Choose a model", options=["Random forest", "Gradient Boosting"])
+    selected_ML = st.selectbox(label='Model',placeholder='Choose a model', options=["Random forest", "Gradient Boosting"])
     # split data into test and train data
     y = df['saleEstimate_currentPrice']
     x = df.loc[:,
