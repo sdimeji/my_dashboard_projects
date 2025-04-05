@@ -256,19 +256,19 @@ with tab2:
 
     if selected_ML == "Stochastic Gradient Descent":
             st.header("Implement Stochastic Gradient Descent")
-            reg2 = joblib.load('HouseSGDmodel.pkl')
+            sgd = joblib.load('HouseSGDmodel.pkl')
 
             st.header("Metrics Stochastic Gradient Descent")
             col1, col2, col3, col4 = st.columns(4)
             col5, col6, col7, col8 = st.columns(4)
-            R2sq_trainsgd = r2_score(y_train, reg2.predict(X_trans))
-            R2sq_testsgd = r2_score(y_test, reg2.predict(X_test))
-            mean_abs_testsgd = mean_absolute_error(y_test, reg2.predict(X_test))
-            mean_abs_testpercensgd = mean_absolute_percentage_error(y_test, reg2.predict(X_test))
-            mean_abs_trainsgd = mean_absolute_error(y_train, reg2.predict(X_trans))
-            mean_abs_trainpercensgd = mean_absolute_percentage_error(y_train, reg2.predict(X_trans))
-            mean_sqtestsgd = mean_squared_error(y_test, reg2.predict(X_test))
-            mean_sqtrainsgd = mean_squared_error(y_train, reg2.predict(X_trans))
+            R2sq_trainsgd = r2_score(y_train, sgd.predict(X_trans))
+            R2sq_testsgd = r2_score(y_test, sgd.predict(X_test))
+            mean_abs_testsgd = mean_absolute_error(y_test, sgd.predict(X_test))
+            mean_abs_testpercensgd = mean_absolute_percentage_error(y_test, sgd.predict(X_test))
+            mean_abs_trainsgd = mean_absolute_error(y_train, sgd.predict(X_trans))
+            mean_abs_trainpercensgd = mean_absolute_percentage_error(y_train, sgd.predict(X_trans))
+            mean_sqtestsgd = mean_squared_error(y_test, sgd.predict(X_test))
+            mean_sqtrainsgd = mean_squared_error(y_train, sgd.predict(X_trans))
 
             col1.metric("R2 train", np.round(R2sq_trainsgd, 3))
             col2.metric("R2 test", np.round(R2sq_testsgd, 3))
@@ -280,8 +280,8 @@ with tab2:
             col8.metric("M sq error train", np.round(mean_sqtrainsgd, 2))
 
             # plot of actual and predicted value
-            x_pred = reg2.predict(X_test)
-            reg2_plot = px.scatter(x=x_pred, y=y_test, trendline='ols',
+            x_prediction = sgd.predict(X_test)
+            sgd_plot = px.scatter(x=x_prediction, y=y_test, trendline='ols',
                                    title='Stochastic Gradient Descent regression prediction vs actual value',
                                    height=800)
-            st.plotly_chart(reg2_plot)
+            st.plotly_chart(sgd_plot)
