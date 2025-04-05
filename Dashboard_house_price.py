@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.linear_model import LinearRegression,RANSACRegressor
+from sklearn.linear_model import LinearRegression,RANSACRegressor,SGDRegressor
 from sklearn.preprocessing import RobustScaler,LabelEncoder
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -12,9 +12,7 @@ from sklearn.metrics import mean_squared_error,r2_score,mean_absolute_error,mean
 from sklearn.datasets import make_friedman1
 import plotly.express as px
 from sklearn import linear_model,tree
-from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor,HistGradientBoostingRegressor
-from sklearn import svm
-from sklearn.svm import SVR
+from sklearn.ensemble import RandomForestRegressor,GradientBoostingRegressor
 from IPython.display import display
 import joblib
 
