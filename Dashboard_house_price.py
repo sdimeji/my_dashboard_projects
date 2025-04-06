@@ -156,8 +156,7 @@ with tab2:
     selected_ML = st.selectbox(label='Model',placeholder='Choose a model', options=["Random forest", "Gradient Boosting","Stochastic Gradient Descent"])
     # split data into test and train data
     y = df['saleEstimate_currentPrice']
-    x = df.loc[:,
-        ['bathrooms', 'floorAreaSqM', 'saleEstimate_lowerPrice', 'rentEstimate_lowerPrice', 'rentEstimate_currentPrice',
+    x = df.loc[:,['bathrooms', 'floorAreaSqM', 'saleEstimate_lowerPrice', 'rentEstimate_lowerPrice', 'rentEstimate_currentPrice',
          'propertyType', 'rentEstimate_upperPrice', 'saleEstimate_upperPrice', 'livingRooms', 'history_price',
          'currentEnergyRating']]
     X_enc = pd.get_dummies(x, dtype=int, dummy_na='unknown', columns=['currentEnergyRating', 'propertyType'])
