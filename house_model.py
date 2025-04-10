@@ -202,7 +202,7 @@ st.plotly_chart(Gd_plot)
 #Stochastic Gradient Descent
 reg2 = SGDRegressor(max_iter=1000, tol=1e-3)
 reg2.fit(X_trans, y_train)
-joblib.dump(reg, 'HouseSGDmodel.pkl')
+joblib.dump(reg2, 'HouseSGDmodel.pkl')
 
 #plot of actual and predicted value
 x_pred=reg2.predict(X_test)
