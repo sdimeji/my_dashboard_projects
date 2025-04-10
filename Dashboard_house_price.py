@@ -31,14 +31,6 @@ for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confiden
 # add title to your dashboard
 st.title('House price prediction dashboard')
 st.header(': blue[This project is trying to predict house sales prices based on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024]')
-st.text('Key variables include fullAddress: Complete property address, postcode: Postal code identifying specific areas, outcode: First part of the postcode, grouping properties into broader geographic zones, latitude & longitude: Geographic coordinates for mapping or location-based analysis, property details: Includes bathrooms, bedrooms, floorAreaSqM, livingRooms, tenure (e.g., leasehold or freehold), and propertyType (e.g., flat, maisonette), energy rating: Current energy rating, indicating the property’s energy efficiency.
-Pricing Information includes
-Rental Estimates: Ranges for estimated rental values (rentEstimate_lowerPrice, rentEstimate_currentPrice, rentEstimate_upperPrice),
-Sale Estimates: Current sale price estimates with confidence levels and historical changes,
-saleEstimate_currentPrice: Current estimated sale price,
-saleEstimate_confidenceLevel: Confidence in the sale price estimate (LOW, MEDIUM, HIGH),
-saleEstimate_valueChange: Numeric and percentage change in sale value over time,
-Transaction History: Date-stamped sale prices with historic price changes, providing insight into property appreciation or depreciation')
 
 tab1, tab2 = st.tabs(["EDA", "ML"])
 
