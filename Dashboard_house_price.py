@@ -31,7 +31,7 @@ for col in ['tenure','propertyType','currentEnergyRating','saleEstimate_confiden
 # add title to your dashboard
 st.title('House price prediction dashboard')
 st.header(': blue[This project is trying to predict house sales prices based on features of the house and its location using key variables in this dataset. This is a dataset of 100,000 sold house prices from 1995 -2024]')
-st.text('This dataset consists of 21 columns and 47234 data points, float64(14), int64(1), object(6). Key variables include fullAddress, postcode, outcode, latitude & longitude, property details, tenure, propertyType, Current energy rating .Pricing Information includes
+st.header('This dataset consists of 21 columns and 47234 data points, float64(14), int64(1), object(6). Key variables include fullAddress, postcode, outcode, latitude & longitude, property details, tenure, propertyType, Current energy rating .Pricing Information includes
         Rental Estimates,saleEstimate_currentPrice,saleEstimate_confidenceLevel,saleEstimate_valueChange,
         transaction History providing insight into property appreciation or depreciation')
 
