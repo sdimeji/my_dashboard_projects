@@ -224,7 +224,7 @@ with tab2:
         st.header("Feature importance Gradient Boosting")
 
         df_plot = pd.DataFrame({'coef': list(reg.feature_importances_), 'name': x_train.columns})
-        b=px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=800,title='Feature Importance XGboost')
+        b=px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=800, title='Feature Importance XGboost')
         st.plotly_chart(b)
 
         st.header("Metrics Gradient Boosting")
