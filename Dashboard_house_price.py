@@ -186,7 +186,7 @@ with tab2:
         #Plot feature importance
         st.header("Feature importance RF")
         df_plot = pd.DataFrame({'coef': list(clf.feature_importances_), 'name': x_train.columns})
-        r=px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=1000,title='Random forest')
+        r=px.bar(data_frame=df_plot[df_plot['coef'] > 0], x='coef', y='name', height=1000, title='Random forest')
         st.plotly_chart(r)
 
         st.header("Metrics RF")
