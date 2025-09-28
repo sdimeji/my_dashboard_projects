@@ -1,1 +1,2 @@
-# my_dashboard_projects
+# Machine Learning project on house price and lead scoring prediction
+This project aims to utilize machine learning models to develop predictive models for house prices in the real estate investment industry, using various house or property features to train the model. Different models were being used and tested for accurate prediction. The objective of this project is to leverage the use of artificial intelligence in the real estate industry, enabling individuals and investors to make informed decisions.   
