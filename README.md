@@ -120,19 +120,13 @@ my_dashboard_projects/
 
 - House Price Prediction:
   - Feature engineering (one-hot encoding, scaling)
-  - Model training: Linear Regression, Decision Tree, Random Forest, XGBoost
+  - Model training: Random Forest, XGBoost, Stochastic Gradient 
   - Cross-validation and hyperparameter tuning
 
 - Lead Scoring:
   - Feature selection and engineering
-  - Model training: Logistic Regression, Decision Tree, Random Forest
+  - Model training: Logistic Regression, Decision Tree, Random Forest, and XGBoost
   - Evaluation with precision, recall, F1-score, ROC-AUC
-
----
-
-## Results
-
-*Include summary tables/plots of model performance, insights from EDA, and sample predictions. Update this section with your actual results.*
 
 ---
 
@@ -154,6 +148,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [scikit-learn documentation](https://scikit-learn.org/)
 - [pandas documentation](https://pandas.pydata.org/)
 - [Streamlit](https://streamlit.io/) or [Dash](https://plotly.com/dash/) for dashboarding
+- Website: https://housepriceprediction-dashboard.streamlit.app/
+- Website: https://leadscoringdashboard-hg.streamlit.app/
 
 ---
 
